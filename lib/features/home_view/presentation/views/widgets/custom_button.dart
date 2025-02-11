@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hour_flow/features/edit_task/presentation/views/edit_view.dart';
 
 import '../../../../../core/utils/app_images.dart';
 
@@ -21,7 +22,9 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, EditView.routeName);
+          },
           child: Row(
             children: [
               Padding(
