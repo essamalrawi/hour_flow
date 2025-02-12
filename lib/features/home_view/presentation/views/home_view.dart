@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hour_flow/features/home_view/presentation/views/manager/set_data_cubit.dart';
 import 'package:hour_flow/features/home_view/presentation/views/widgets/home_view_body.dart';
 
 import '../../../../core/utils/app_images.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
+
   static const String routeName = 'home';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(
-          'Activity',
+          'السجلات',
           style: TextStyle(fontSize: 22),
         ),
         centerTitle: true,
@@ -30,7 +34,11 @@ class HomeView extends StatelessWidget {
               )),
         ],
       ),
-      body: SafeArea(child: HomeViewBody()),
+      body: SafeArea(
+          child: BlocProvider(
+        create: (context) => SetDataCubit(),
+        child: HomeViewBody(),
+      )),
     );
   }
 }

@@ -10,9 +10,12 @@ dependencies:
   dropdown_button2: ^2.3.9
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.0.0
   flutter_launcher_icons: ^0.14.3
   flutter_svg: ^2.0.17
+  font_awesome_flutter: ^10.8.0
   omni_datetime_picker: ^2.0.6
+  shared_preferences: ^2.5.2
 
 dev_dependencies:
   flutter_lints: ^5.0.0

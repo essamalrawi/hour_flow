@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hour_flow/core/services/shared_preferences_singleton.dart';
+import 'package:hour_flow/features/home_view/presentation/views/manager/set_data_cubit.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
+import '../../../../../consnats.dart';
 import '../../../../../core/utils/app_images.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  const CustomButton({
+    super.key,
+    required this.title,
+    required this.icon,
+    this.onPressed,
+  });
+
+  final String title;
+  final Widget icon;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -22,24 +35,12 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          onPressed: () async {
-            // final DateTime? dateTime =
-            //     await showOmniDateTimePicker(context: context);
-
-            // Use dateTime here
-            // debugPrint('dateTime: $dateTime');
-
-            final List<DateTime>? dateTime =
-                await showOmniDateTimeRangePicker(context: context);
-
-            // Use dateTime here
-            debugPrint('dateTime: $dateTime');
-          },
+          onPressed: onPressed,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                'إضافة سجل اليوم/مخصص',
+                title,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,
@@ -47,7 +48,7 @@ class CustomButton extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 13.44),
-                child: SvgPicture.asset(Assets.imagesAdd),
+                child: icon,
               ),
             ],
           )),
