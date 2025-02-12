@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hour_flow/features/edit_task/presentation/views/edit_view.dart';
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 
 import '../../../../../core/utils/app_images.dart';
 
@@ -22,22 +22,33 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          onPressed: () {
-            Navigator.pushNamed(context, EditView.routeName);
+          onPressed: () async {
+            // final DateTime? dateTime =
+            //     await showOmniDateTimePicker(context: context);
+
+            // Use dateTime here
+            // debugPrint('dateTime: $dateTime');
+
+            final List<DateTime>? dateTime =
+                await showOmniDateTimeRangePicker(context: context);
+
+            // Use dateTime here
+            debugPrint('dateTime: $dateTime');
           },
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 13.44),
-                child: SvgPicture.asset(Assets.imagesAdd),
-              ),
               Text(
-                'Add new activity',
+                'إضافة سجل اليوم/مخصص',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 13.44),
+                child: SvgPicture.asset(Assets.imagesAdd),
+              ),
             ],
           )),
     );

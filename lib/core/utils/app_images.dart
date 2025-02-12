@@ -18,6 +18,10 @@ class Assets {
   /// assets/images/chart.svg
   static const String imagesChart = "assets/images/chart.svg";
 
+  /// Assets for imagesDeleteIcon
+  /// assets/images/delete-icon.svg
+  static const String imagesDeleteIcon = "assets/images/delete-icon.svg";
+
   /// Assets for imagesHierarchy
   /// assets/images/hierarchy.svg
   static const String imagesHierarchy = "assets/images/hierarchy.svg";
@@ -25,5 +29,17 @@ class Assets {
   /// Assets for imagesLogo
   /// assets/images/logo.png
   static const String imagesLogo = "assets/images/logo.png";
+
+  /// Assets for imagesPlayCircle
+  /// assets/images/play-circle.svg
+  static const String imagesPlayCircle = "assets/images/play-circle.svg";
+
+  /// Assets for imagesStopCircle
+  /// assets/images/stop-circle.svg
+  static const String imagesStopCircle = "assets/images/stop-circle.svg";
+
+  /// Assets for imagesX
+  /// assets/images/x.svg
+  static const String imagesX = "assets/images/x.svg";
 }
 

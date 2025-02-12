@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../core/utils/app_images.dart';
 import 'widgets/custom_edit_appbar.dart';
 import 'widgets/edit_view_body.dart';
 
