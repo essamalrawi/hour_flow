@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +17,7 @@ void showBorrowMoneySheet(BuildContext context) {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 50,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25),
@@ -38,55 +37,63 @@ void showBorrowMoneySheet(BuildContext context) {
                       )
                     ],
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text(
-                        "إضافة مبلغ مقترض",
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white70),
-                      ),
-                      const SizedBox(height: 15),
-                      TextField(
-                        onChanged: (val) {
-                          deposit = double.parse(val);
-                        },
-                        keyboardType: TextInputType.number,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(FontAwesomeIcons.moneyBillWave,
+                  child: Builder(
+                    builder: (context) => Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          "إضافة مبلغ مقترض",
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
                               color: Colors.white70),
-                          hintText: "أدخل المبلغ بالجنيه",
-                          hintStyle: TextStyle(
-                            color: Colors.white54,
+                        ),
+                        const SizedBox(height: 15),
+                        TextField(
+                          onChanged: (val) {
+                            deposit = double.parse(val);
+                          },
+                          keyboardType: TextInputType.number,
+                          style: const TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(
+                                FontAwesomeIcons.moneyBillWave,
+                                color: Colors.white70),
+                            hintText: "أدخل المبلغ بالجنيه",
+                            hintStyle: TextStyle(
+                              color: Colors.white54,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.1),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: BorderSide.none),
                           ),
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.1),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide.none),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          context.read<SetDataCubit>().setMoney(money: deposit);
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(FontAwesomeIcons.check, size: 18),
-                        label: const Text("حفظ"),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.greenAccent.shade700,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                        const SizedBox(height: 20),
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            if (deposit != 0) {
+                              context
+                                  .read<SetDataCubit>()
+                                  .setMoney(money: deposit);
+                            }
+
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(FontAwesomeIcons.check, size: 18),
+                          label: const Text("حفظ"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.greenAccent.shade700,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 12),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

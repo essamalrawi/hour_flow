@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -47,27 +44,27 @@ class HomeViewBody extends StatelessWidget {
                 showBorrowMoneySheet(context);
               },
             ),
-            BlocBuilder<SetDataCubit, TimeState>(
+            Prefs.getMinutes(kTotalHours) == 0
+                ? SizedBox()
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(height: 13.44),
+                      TotalHoursWidget(
+                        totalMinutes: Prefs.getMinutes(kTotalHours),
+                      ),
+                    ],
+                  ),
+            SizedBox(height: 13.44),
+            BlocBuilder<SetDataCubit, SetDataState>(
               builder: (context, state) {
-                return Prefs.getMinutes(kTotalHours) == 0
-                    ? SizedBox()
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          SizedBox(height: 13.44),
-                          TotalHoursWidget(
-                            totalMinutes: Prefs.getMinutes(kTotalHours),
-                          ),
-                        ],
-                      );
+                return BorrowedMoneyWidget(
+                  amount: Prefs.getDouble(kBorrowedMoney),
+                );
               },
             ),
             SizedBox(height: 13.44),
-            BorrowedMoneyWidget(
-              amount: 69,
-            ),
-            SizedBox(height: 13.44),
-            BlocBuilder<SetDataCubit, TimeState>(builder: (context, state) {
+            BlocBuilder<SetDataCubit, SetDataState>(builder: (context, state) {
               return state is SetDataSuccess
                   ? SuccessWidget()
                   : state is SetDataFailure

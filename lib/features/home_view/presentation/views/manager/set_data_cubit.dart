@@ -1,15 +1,13 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
-
 import '../../../../../consnats.dart';
 import '../../../../../core/services/shared_preferences_singleton.dart';
 
 part 'set_date_state.dart';
 
-class SetDataCubit extends Cubit<TimeState> {
+class SetDataCubit extends Cubit<SetDataState> {
   SetDataCubit() : super(SetDataInitial());
 
   setTime({required context}) async {
@@ -35,17 +33,17 @@ class SetDataCubit extends Cubit<TimeState> {
     }
   }
 
-  setMoney({required money}) {
-    // Use dateTime here
-    emit(SetDataInitial());
-    if (money != null) {
-      double total = Prefs.getDouble(kBorrowedMoney);
-
-      Prefs.setDouble(kBorrowedMoney, money + total);
-      emit(SetDataSuccess());
-      delayedFunction();
+  void setMoney({required double money}) {
+    if (money <= 0) {
+      emit(SetDataFailure("المبلغ يجب أن يكون أكبر من صفر"));
+      return;
     }
-    emit(SetDataFailure(""));
+
+    double total = Prefs.getDouble(kBorrowedMoney) ?? 0.0;
+
+    Prefs.setDouble(kBorrowedMoney, money + total);
+
+    emit(SetDataSuccess());
   }
 
   void delayedFunction() {
