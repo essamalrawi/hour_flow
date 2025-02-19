@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BorrowedMoneyWidget extends StatelessWidget {
   final double amount;
@@ -48,7 +46,7 @@ class BorrowedMoneyWidget extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                "\£${amount.toStringAsFixed(2)}",
+                "£${amount.toStringAsFixed(2)}",
                 style: const TextStyle(
                   fontSize: 42,
                   fontWeight: FontWeight.bold,

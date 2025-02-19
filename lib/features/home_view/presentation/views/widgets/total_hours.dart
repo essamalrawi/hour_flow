@@ -9,7 +9,7 @@ class TotalHoursWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int hours = totalMinutes ~/ 60; // Convert minutes to hours
+    int hours = totalMinutes ~/ 60;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -38,12 +38,18 @@ class TotalHoursWidget extends StatelessWidget {
             children: [
               const Text(
                 "مجموع الساعات",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white70),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white70),
               ),
               const SizedBox(height: 10),
               Text(
                 "$hoursس ",
-                style:   TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color:   Color(0xff2ECC71)),
+                style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff2ECC71)),
               ),
             ],
           ),

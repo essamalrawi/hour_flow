@@ -25,8 +25,10 @@ class HomeViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 26),
+            SizedBox(height: 10),
+            SizedBox(height: 13.44),
             CustomButton(
-              title: "إضافة سجل اليوم/مخصص",
+              title: "تسجيل يوم مخصص",
               icon: SvgPicture.asset(Assets.imagesAdd),
               onPressed: () {
                 BlocProvider.of<SetDataCubit>(context)
@@ -35,7 +37,7 @@ class HomeViewBody extends StatelessWidget {
             ),
             SizedBox(height: 13.44),
             CustomButton(
-              title: "اقتراض المال   ",
+              title: "   اقتراض المال",
               icon: Icon(
                 FontAwesomeIcons.wallet,
                 color: Colors.white,
@@ -44,17 +46,21 @@ class HomeViewBody extends StatelessWidget {
                 showBorrowMoneySheet(context);
               },
             ),
-            Prefs.getMinutes(kTotalHours) == 0
-                ? SizedBox()
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SizedBox(height: 13.44),
-                      TotalHoursWidget(
-                        totalMinutes: Prefs.getMinutes(kTotalHours),
-                      ),
-                    ],
-                  ),
+            BlocBuilder<SetDataCubit, SetDataState>(
+              builder: (context, state) {
+                return Prefs.getMinutes(kTotalHours) == 0
+                    ? SizedBox()
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SizedBox(height: 13.44),
+                          TotalHoursWidget(
+                            totalMinutes: Prefs.getMinutes(kTotalHours),
+                          ),
+                        ],
+                      );
+              },
+            ),
             SizedBox(height: 13.44),
             BlocBuilder<SetDataCubit, SetDataState>(
               builder: (context, state) {

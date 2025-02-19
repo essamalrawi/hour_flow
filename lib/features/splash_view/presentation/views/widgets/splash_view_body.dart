@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hour_flow/features/home_view/presentation/views/home_view.dart';
-
 import '../../../../../core/utils/app_images.dart';
 
 class SplashViewBody extends StatefulWidget {

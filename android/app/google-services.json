@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "124401600750",
+    "project_id": "saqr-s-project",
+    "storage_bucket": "saqr-s-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124401600750:android:5c7f1f387eaaa81466cbff",
+        "android_client_info": {
+          "package_name": "com.example.hour_flow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIme6rHAvxaWtK4C42yDCtjqpS0LJi5dg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

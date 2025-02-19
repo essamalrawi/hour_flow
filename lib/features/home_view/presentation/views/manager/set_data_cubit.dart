@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:omni_datetime_picker/omni_datetime_picker.dart';
@@ -9,11 +8,16 @@ part 'set_date_state.dart';
 
 class SetDataCubit extends Cubit<SetDataState> {
   SetDataCubit() : super(SetDataInitial());
+  setNormalTime({required context}) async {
+    final DateTime? dateTime = await showOmniDateTimePicker(context: context);
+    if (dateTime != null) {
+      delayedFunction();
+    }
+  }
 
   setTime({required context}) async {
     final List<DateTime>? dateTime =
         await showOmniDateTimeRangePicker(context: context);
-    // Use dateTime here
     if (dateTime != null) {
       DateTime startTime = dateTime[0];
       DateTime endTime = dateTime[1];
