@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../manager/set_data_cubit.dart';
 
 void showBorrowMoneySheet(BuildContext context) {
   double deposit = 0;
@@ -73,11 +72,7 @@ void showBorrowMoneySheet(BuildContext context) {
                         const SizedBox(height: 20),
                         ElevatedButton.icon(
                           onPressed: () {
-                            if (deposit != 0) {
-                              context
-                                  .read<SetDataCubit>()
-                                  .setMoney(money: deposit);
-                            }
+                            if (deposit != 0) {}
 
                             Navigator.pop(context);
                           },

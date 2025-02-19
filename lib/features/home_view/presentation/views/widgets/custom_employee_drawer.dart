@@ -9,27 +9,7 @@ class CustomEmployeeDrawer extends StatelessWidget {
   static const Color primaryColor = Color(0xff131b26);
   static const Color accentColor = Color(0xff1f2a38);
   static const Color iconColor = Colors.white;
-  static const List<EmployeeModel> employees = [
-    EmployeeModel(name: "أبو أحمد الجامد", position: "سباك"),
-    EmployeeModel(name: "محمد جاسم البطل", position: "مزارع"),
-    EmployeeModel(name: "حسان سعيد الفاهم", position: "نجار"),
-    EmployeeModel(name: "خالد الشجاع", position: "حداد"),
-    EmployeeModel(name: "خالد فهد الصادق", position: "طبيب بيطرى"),
-    EmployeeModel(name: "علي حسن القوي", position: "سائق توك توك"),
-    EmployeeModel(name: "محمود عادل الشاطر", position: "مصور"),
-    EmployeeModel(name: "سعيد كامل الأمل", position: "محاسب"),
-    EmployeeModel(name: "أحمد يوسف القوي", position: "مهندس ميكانيكا"),
-    EmployeeModel(name: "عادل محمود الجاد", position: "فني كهرباء"),
-    EmployeeModel(name: "عمر سامي الضحوك", position: "موظف استقبال"),
-    EmployeeModel(name: "فؤاد عبد الله القوي", position: "فنان"),
-    EmployeeModel(name: "أسامة أحمد السريع", position: "شيف"),
-    EmployeeModel(name: "عماد طارق المجتهد", position: "مدير مشروع"),
-    EmployeeModel(name: "حسن فوزي المحترف", position: "مطور برمجيات"),
-    EmployeeModel(name: "أحمد سعيد الحذر", position: "حلاق"),
-    EmployeeModel(name: "طارق عبد الله النشيط", position: "مترجم"),
-    EmployeeModel(name: "زكريا محمود النشيط", position: "مدرس"),
-    EmployeeModel(name: "مصطفى جمال القوي", position: "موظف حكومي"),
-  ];
+  static const List<EmployeeModel> employees = [];
 
   @override
   Widget build(BuildContext context) {

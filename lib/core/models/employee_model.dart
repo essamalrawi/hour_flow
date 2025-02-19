@@ -1,6 +1,7 @@
 class EmployeeModel {
   final String name;
   final String position;
-
-  const EmployeeModel({required this.name, required this.position});
+  final double dailySalary;
+  const EmployeeModel(
+      {required this.dailySalary, required this.name, required this.position});
 }

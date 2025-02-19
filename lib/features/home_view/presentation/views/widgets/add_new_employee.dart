@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hour_flow/core/models/employee_model.dart';
 import 'package:hour_flow/core/services/firestore_service.dart';
 import 'package:hour_flow/core/services/get_it_service.dart';
 
@@ -111,9 +112,10 @@ void showAddNewEmployeeSheet(BuildContext context) {
                               employeeSalary > 0) {
                             // log("Their Name: $employeeName , Salary: $employeeSalary");
                             getIt<FireStoreService>().addEmployee(
-                                name: employeeName,
-                                job: titleName,
-                                dailySalary: employeeSalary);
+                                employee: EmployeeModel(
+                                    name: employeeName,
+                                    position: titleName,
+                                    dailySalary: employeeSalary));
                           }
                           Navigator.pop(context);
                         },

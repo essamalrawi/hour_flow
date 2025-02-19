@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hour_flow/core/manager/employee_data_cubit/employee_data_cubit.dart';
+import 'package:hour_flow/core/services/firestore_service.dart';
 import 'package:hour_flow/core/services/get_it_service.dart';
 import 'package:hour_flow/core/utils/app_colors.dart';
-import 'package:hour_flow/features/home_view/presentation/views/manager/set_data_cubit.dart';
 import 'core/functions/on_generate_route.dart';
 import 'core/services/custom_bloc_observer.dart';
 import 'core/services/shared_preferences_singleton.dart';
@@ -27,7 +28,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SetDataCubit(),
+      create: (context) => EmployeeDataCubit(getIt<FireStoreService>()),
       child: MaterialApp(
         initialRoute: SplashView.routeName,
         debugShowCheckedModeBanner: false,

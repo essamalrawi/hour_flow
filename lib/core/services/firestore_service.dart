@@ -1,18 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hour_flow/core/services/data_service.dart';
 
+import '../models/employee_model.dart';
+
 class FireStoreService implements DatabaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  void addEmployee(
-      {required String name,
-      required String job,
-      required double dailySalary}) async {
-    await FirebaseFirestore.instance.collection('employees').add({
-      'name': name,
-      'job': job,
-      'daily_salary': dailySalary,
-    });
+  Future<void> addEmployee({required EmployeeModel employee}) async {
+    try {
+      await FirebaseFirestore.instance.collection('employees').add({
+        'name': employee.name,
+        'job': employee.position,
+        'daily_salary': employee.dailySalary,
+      });
+      print("Employee added successfully!");
+    } catch (e) {
+      print("Error adding employee: $e");
+    }
   }
 
   void recordAttendance(
