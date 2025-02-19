@@ -28,7 +28,7 @@ class HomeViewBody extends StatelessWidget {
             SizedBox(height: 10),
             SizedBox(height: 13.44),
             CustomButton(
-              title: "تسجيل يوم مخصص",
+              title: "تسجيل يوم",
               icon: SvgPicture.asset(Assets.imagesAdd),
               onPressed: () {
                 BlocProvider.of<SetDataCubit>(context)

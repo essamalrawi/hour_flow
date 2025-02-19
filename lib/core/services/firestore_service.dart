@@ -4,6 +4,38 @@ import 'package:hour_flow/core/services/data_service.dart';
 class FireStoreService implements DatabaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  void addEmployee(
+      {required String name,
+      required String job,
+      required double dailySalary}) async {
+    await FirebaseFirestore.instance.collection('employees').add({
+      'name': name,
+      'job': job,
+      'daily_salary': dailySalary,
+    });
+  }
+
+  void recordAttendance(
+      String employeeId, DateTime checkInTime, DateTime checkOut) async {
+    await FirebaseFirestore.instance
+        .collection('employees')
+        .doc(employeeId)
+        .collection('attendance')
+        .add({
+      'check_in': checkInTime.toIso8601String(),
+      'check_out': checkOut.toIso8601String(),
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> getAllEmployees() async {
+    var snapshot =
+        await FirebaseFirestore.instance.collection('employees').get();
+
+    return snapshot.docs.map((doc) {
+      return doc.data();
+    }).toList();
+  }
+
   @override
   Future<void> addData(
       {required String path,

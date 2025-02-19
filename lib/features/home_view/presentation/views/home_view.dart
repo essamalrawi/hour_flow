@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hour_flow/features/home_view/presentation/views/widgets/custom_employee_drawer.dart';
 import 'package:hour_flow/features/home_view/presentation/views/widgets/home_view_body.dart';
-
 import '../../../../core/utils/app_images.dart';
 
 class HomeView extends StatelessWidget {
