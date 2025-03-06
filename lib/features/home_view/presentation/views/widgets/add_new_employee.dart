@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hour_flow/core/models/employee_model.dart';
-import 'package:hour_flow/core/services/firestore_service.dart';
-import 'package:hour_flow/core/services/get_it_service.dart';
+import '../../../../../core/entites/employee_entity.dart';
+import '../../../../../core/manager/employee_data_cubit/employee_data_cubit.dart';
 
 void showAddNewEmployeeSheet(BuildContext context) {
   String employeeName = '';
@@ -110,12 +110,19 @@ void showAddNewEmployeeSheet(BuildContext context) {
                           if (employeeName.isNotEmpty &&
                               titleName.isNotEmpty &&
                               employeeSalary > 0) {
-                            // log("Their Name: $employeeName , Salary: $employeeSalary");
-                            getIt<FireStoreService>().addEmployee(
-                                employee: EmployeeModel(
-                                    name: employeeName,
-                                    position: titleName,
-                                    dailySalary: employeeSalary));
+                            BlocProvider.of<EmployeeDataCubit>(context)
+                                .addEmployee(
+                                    employee: EmployeeEntity(
+                                        totalMins: 0,
+                                        borrowedMoney: 0,
+                                        uid: "",
+                                        salary: employeeSalary,
+                                        name: employeeName,
+                                        titleName: titleName,
+                                        loanRecord: {},
+                                        hourRecord: {}));
+
+                            context.read<EmployeeDataCubit>().getAllEmployees();
                           }
                           Navigator.pop(context);
                         },

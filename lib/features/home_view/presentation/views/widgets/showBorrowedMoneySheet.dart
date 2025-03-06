@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hour_flow/core/manager/employee_data_cubit/employee_data_cubit.dart';
 
 void showBorrowMoneySheet(BuildContext context) {
   double deposit = 0;
@@ -72,7 +73,10 @@ void showBorrowMoneySheet(BuildContext context) {
                         const SizedBox(height: 20),
                         ElevatedButton.icon(
                           onPressed: () {
-                            if (deposit != 0) {}
+                            if (deposit != 0) {
+                              BlocProvider.of<EmployeeDataCubit>(context)
+                                  .borrowedMoney(money: deposit);
+                            }
 
                             Navigator.pop(context);
                           },

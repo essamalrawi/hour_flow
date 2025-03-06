@@ -1,21 +1,104 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hour_flow/core/services/data_service.dart';
+import 'package:intl/intl.dart';
 
-import '../models/employee_model.dart';
+import '../entites/employee_entity.dart';
 
 class FireStoreService implements DatabaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<void> addEmployee({required EmployeeModel employee}) async {
+  Future<void> addEmployee({required EmployeeEntity employee}) async {
     try {
-      await FirebaseFirestore.instance.collection('employees').add({
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection('employees').doc();
+
+      await docRef.set({
+        'id': docRef.id,
         'name': employee.name,
-        'job': employee.position,
-        'daily_salary': employee.dailySalary,
+        'job': employee.titleName,
+        'daily_salary': employee.salary,
+        'borrowed_money': employee.borrowedMoney,
+        "total_mins": employee.totalMins,
+        'hour_records': {},
+        'loan_records': {}
       });
+
       print("Employee added successfully!");
     } catch (e) {
       print("Error adding employee: $e");
+    }
+  }
+
+  Future<void> updateTime(
+      {required EmployeeEntity employee,
+      required String signIn,
+      required String signOut,
+      required int total}) async {
+    try {
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection('employees').doc(employee.uid);
+
+      Map<String, dynamic> loanRecord = {
+        'Sign In': signIn,
+        'Sign Out': signOut,
+      };
+
+      await docRef.update({
+        'total_mins': FieldValue.increment(total),
+        'hour_records': FieldValue.arrayUnion([loanRecord])
+      });
+
+      print("UpdateTime updated successfully!");
+    } catch (e) {
+      print("Error updating UpdateTime money: $e");
+    }
+  }
+
+  Future<void> borrowedMoney(
+      {required EmployeeEntity employee, required double amount}) async {
+    try {
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection('employees').doc(employee.uid);
+
+      String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+      Map<String, dynamic> loanRecord = {
+        'date': today,
+        'amount': amount,
+      };
+
+      await docRef.update({
+        'borrowed_money': FieldValue.increment(amount),
+        'loan_records': FieldValue.arrayUnion([loanRecord])
+      });
+
+      print("Borrowed Money updated successfully!");
+    } catch (e) {
+      print("Error updating borrowed money: $e");
+    }
+  }
+
+  Future<List<EmployeeEntity>> getAllEmployees() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection('employees').get();
+
+      List<EmployeeEntity> employees = querySnapshot.docs.map((doc) {
+        return EmployeeEntity(
+            name: doc['name'],
+            uid: doc.id,
+            titleName: doc['job'],
+            salary: (doc['daily_salary'] as num).toDouble(),
+            borrowedMoney: doc['borrowed_money'],
+            totalMins: doc['total_mins'],
+            hourRecord: doc['hour_records'],
+            loanRecord: doc['loan_records']);
+      }).toList();
+
+      return employees;
+    } catch (e) {
+      print("Error fetching employees: $e");
+      return [];
     }
   }
 
@@ -31,14 +114,14 @@ class FireStoreService implements DatabaseService {
     });
   }
 
-  Future<List<Map<String, dynamic>>> getAllEmployees() async {
-    var snapshot =
-        await FirebaseFirestore.instance.collection('employees').get();
+  // Future<List<Map<String, dynamic>>> getAllEmployees() async {
+  //   var snapshot =
+  //       await FirebaseFirestore.instance.collection('employees').get();
 
-    return snapshot.docs.map((doc) {
-      return doc.data();
-    }).toList();
-  }
+  //   return snapshot.docs.map((doc) {
+  //     return doc.data();
+  //   }).toList();
+  // }
 
   @override
   Future<void> addData(

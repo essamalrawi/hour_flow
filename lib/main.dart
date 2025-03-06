@@ -28,7 +28,8 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EmployeeDataCubit(getIt<FireStoreService>()),
+      create: (context) =>
+          EmployeeDataCubit(getIt<FireStoreService>())..getAllEmployees(),
       child: MaterialApp(
         initialRoute: SplashView.routeName,
         debugShowCheckedModeBanner: false,

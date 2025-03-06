@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hour_flow/core/entites/employee_entity.dart';
 import 'package:hour_flow/features/home_view/presentation/views/widgets/custom_employee_drawer_item.dart';
-
-import '../../../../../core/models/employee_model.dart';
 
 class CustomEmployeeDrawerListView extends StatelessWidget {
   const CustomEmployeeDrawerListView({
@@ -9,7 +8,7 @@ class CustomEmployeeDrawerListView extends StatelessWidget {
     required this.employees,
   });
 
-  final List<EmployeeModel> employees;
+  final List<EmployeeEntity> employees;
 
   @override
   Widget build(BuildContext context) {
