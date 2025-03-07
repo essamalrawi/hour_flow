@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hour_flow/core/entites/employee_entity.dart';
-
 import '../../../../../core/manager/employee_data_cubit/employee_data_cubit.dart';
-import '../../../../../core/services/shared_preferences_singleton.dart';
 
 class CustomEmployeeDrawerItem extends StatelessWidget {
   const CustomEmployeeDrawerItem({

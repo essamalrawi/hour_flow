@@ -19,8 +19,6 @@ class FireStoreService implements DatabaseService {
         'daily_salary': employee.salary,
         'borrowed_money': employee.borrowedMoney,
         "total_mins": employee.totalMins,
-        'hour_records': {},
-        'loan_records': {}
       });
 
       print("Employee added successfully!");

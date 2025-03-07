@@ -5,8 +5,8 @@ class EmployeeEntity {
   final String? uid;
   double borrowedMoney;
   int totalMins;
-  Map<String, dynamic> loanRecord;
-  Map<String, dynamic> hourRecord;
+  Map<String, String>? loanRecord;
+  Map<String, String>? hourRecord;
   EmployeeEntity(
       {required this.borrowedMoney,
       required this.totalMins,
